@@ -14,22 +14,24 @@ class Data_generator:
             'Authorization': 'Bearer ' + self.access_token
         }
     
-    def get_params(self, page):
+    def get_params(self, per_page, page):
         return {
-            'per_page': 200,
+            'per_page': per_page,
             'page': page
         }
 
     def fetch_activities(self):
         activities = []
         page = 1
+        print(f'Fetching activities from {self.activities_url}')
 
         while True:
             cur_page = requests.get(self.activities_url, 
                                     headers=self.get_headers(), 
-                                    params=self.get_params(page)).json()
+                                    params=self.get_params(200, page)).json()
             if (len(cur_page) == 0):
                 break
+            print(f'Fetched activities {(page-1) * 200 + 1, (page-1) * 200 + len(cur_page)}')
             page += 1
             activities.extend(cur_page)
 
