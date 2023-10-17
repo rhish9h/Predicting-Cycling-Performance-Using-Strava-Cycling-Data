@@ -1,4 +1,5 @@
 import requests
+import pandas
 
 class Data_generator:
     auth_url = 'https://www.strava.com/oauth/token'
@@ -31,7 +32,7 @@ class Data_generator:
                                     params=self.get_params(200, page)).json()
             if (len(cur_page) == 0):
                 break
-            print(f'Fetched activities {(page-1) * 200 + 1, (page-1) * 200 + len(cur_page)}')
+            print(f'Fetched activities [{(page-1) * 200 + 1},{(page-1) * 200 + len(cur_page)}]')
             page += 1
             activities.extend(cur_page)
 
@@ -45,10 +46,16 @@ class Data_generator:
         return self.full_dataset
     
     def export_csv(self):
-        pass
+        df = pandas.DataFrame(self.full_dataset)
+        csv_filename = 'strava_activities.csv'
+        df.to_csv(csv_filename)
+        print(f'Exported dataset to {csv_filename}')
     
 if __name__ == '__main__':
     data_generator = Data_generator(input('pls enter access_token: '))
     data_generator.generate_data()
     dataset = data_generator.get_full_dataset()
+    print('------------ First line of activities dataset dictionary list ------------')
     print(dataset[0])
+    print('--------------------------------------------------------------------------')
+    data_generator.export_csv()
