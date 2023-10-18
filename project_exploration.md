@@ -23,7 +23,19 @@ elapsed_time - The activity's elapsed time, in seconds
 total_elevation_gain - The activity's total elevation gain  
 type - Activity type. Deprecated. Prefer to use sport_type  
 sport_type - An instance of SportType (Enum of different sports)  
-workout_type - The activity's workout type  
+workout_type - The activity's workout type 'workout_type' : {
+  'run' : {
+    '0' : 'None',
+    '1' : 'Race',
+    '3' : 'Workout',
+    '2' : 'Long Run'
+  }
+  'ride' : {
+    '10' : 'None',
+    '11' : 'Race',
+    '12' : 'Workout'
+  }
+}  
 id - The unique identifier of the activity  
 start_date - The time at which the activity was started  
 start_date_local - The time at which the activity was started in the local timezone  
@@ -105,13 +117,76 @@ strava_zones_per_activity.csv
 
 **Interpretation:** 
 
-strava_activities.csv
+strava_activities.csv:
 
---
+resource_state - 2 means it is summary level data  
+athlete - it's my athlete id with resource state 2 which is summary level  
+name - I felt fatigued that day  
+distance - I rode ~63km that day   
+moving_time - I rode for ~2hr 16min  
+elapsed_time - The total time including breaks was ~2hr 20min  
+total_elevation_gain - Total elevation gain was 131m  
+type - Type of activity was ride  
+sport_type - Type of sport was ride  
+workout_type - The workout was a normal ride, not a race  
+id - The unique identifier of the activity  
+start_date - The ride started at 5pm UTC on 17 October 2023  
+start_date_local - The ride started at 10am AZ time on 17 October 2023  
+timezone - The timezone of the activity was Phoenix AZ time  
+utc_offset - The time in question was 25,200 seconds behind Coordinated Universal Time (UTC)  
+location_city - Blank  
+location_state - Blank  
+location_country - The country of activity was USA  
+achievement_count - The number of achievements gained during this activity was 10  
+kudos_count - The number of kudos given for this activity was 17  
+comment_count - The number of comments for this activity was 0  
+athlete_count - The number of athletes for taking part in a group activity was 1, solo ride  
+photo_count - The number of Instagram photos for this activity was 0  
+map - An instance of PolylineMap, can be deciphered using Google's Polyline tool, shows a map of the ride  
+trainer - Not a trainer ride  
+commute - Not a commute  
+manual - Not added manually  
+private - Not private  
+visibility - Visible to everyone  
+flagged - Not flagged  
+gear_id - The id of the gear for the activity  
+start_latlng - That's where my ride started  
+end_latlng - That's where my ride ended  
+average_speed - Average speed was 27.9kph  
+max_speed - Max speed was 47.6kph  
+average_cadence - Average cadence was 88.4  
+average_temp - The average temperature in celsius was 32  
+average_watts - Average power output in watts during this activity was 155.9  
+max_watts - Max power was 723w  
+weighted_average_watts - Weighter average power was 174w  
+kilojoules - The total work done in kilojoules during this activity was 1276.9  
+device_watts - Power data was from a powermeter  
+has_heartrate - Activity has heartrate  
+average_heartrate - The heart heart rate of the athlete during this activity was 152.1  
+max_heartrate - The maximum heart rate of the athlete during this activity was 187  
+heartrate_opt_out - Did not choose to opt out of heartrate  
+display_hide_heartrate_option - Chose to show heartrate  
+elev_high - The activity's highest elevation, in meters was 361.2  
+elev_low - The activity's lowest elevation, in meters was 316.  
+upload_id - The identifier of the upload that resulted in this activity  
+upload_id_str - The unique identifier of the upload in string format  
+external_id - The desired external identifier of the resulting activity  
+from_accepted_tag - No idea  
+pr_count - Number of personal records achieved in the activity was 2  
+total_photo_count - The number of Instagram and Strava photos for this activity was 1  
+has_kudoed - It's my own activity, I did not kudo myself  
+suffer_score - Score assigned by Strava based on the intensity and difficulty of activity was 176  
 
 strava_zones_per_activity.csv
 
---
+score - Relative effort score based on heart rate  
+distribution_buckets - List of buckets with min, max and time spent in zone  
+type - Type of zones (heartrate/power)  
+resource_state - Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 -> "summary", 3 -> "detail"  
+sensor_based - Whether zones are sensor based  
+points - Points given by Strava  
+custom_zones - Whether zones are custom  
+id - Unique id of activity
 
 ### Record 2
 **Raw Data:**
@@ -130,13 +205,76 @@ strava_zones_per_activity.csv
 
 **Interpretation:**
 
-strava_activities.csv
+strava_activities.csv:
 
---
+resource_state - 2 means it is summary level data  
+athlete - it's my athlete id with resource state 2 which is summary level  
+name - I participated in the AZ State ITT championships that day  
+distance - I rode ~40km that day   
+moving_time - I rode for ~1hr 7min  
+elapsed_time - The total time including breaks was ~1hr 7min  
+total_elevation_gain - Total elevation gain was 42m  
+type - Type of activity was ride  
+sport_type - Type of sport was ride  
+workout_type - The workout was bicycle race  
+id - The unique identifier of the activity  
+start_date - The ride started at 2.46pm UTC on 24 September 2023  
+start_date_local - The ride started at 7.46am AZ time on 24 September 2023  
+timezone - The timezone of the activity was Phoenix AZ time  
+utc_offset - The time in question was 25,200 seconds behind Coordinated Universal Time (UTC)  
+location_city - Blank  
+location_state - Blank  
+location_country - The country of activity was USA  
+achievement_count - The number of achievements gained during this activity was 0  
+kudos_count - The number of kudos given for this activity was 26  
+comment_count - The number of comments for this activity was 6  
+athlete_count - The number of athletes for taking part in a group activity was 3  
+photo_count - The number of Instagram photos for this activity was 0  
+map - An instance of PolylineMap, can be deciphered using Google's Polyline tool, shows a map of the ride  
+trainer - Not a trainer ride  
+commute - Not a commute  
+manual - Not added manually  
+private - Not private  
+visibility - Visible to everyone  
+flagged - Not flagged  
+gear_id - The id of the gear for the activity  
+start_latlng - That's where my ride started  
+end_latlng - That's where my ride ended  
+average_speed - Average speed was 35.8kph  
+max_speed - Max speed was 54.3kph  
+average_cadence - Average cadence was 86.7  
+average_temp - The average temperature in celsius was 22  
+average_watts - Average power output in watts during this activity was 249.9  
+max_watts - Max power was 731w  
+weighted_average_watts - Weighter average power was 249w  
+kilojoules - The total work done in kilojoules during this activity was 1004.5  
+device_watts - Power data was from a powermeter  
+has_heartrate - Activity has heartrate  
+average_heartrate - The heart heart rate of the athlete during this activity was 175.6  
+max_heartrate - The maximum heart rate of the athlete during this activity was 185  
+heartrate_opt_out - Did not choose to opt out of heartrate  
+display_hide_heartrate_option - Chose to show heartrate  
+elev_high - The activity's highest elevation, in meters was 583.6  
+elev_low - The activity's lowest elevation, in meters was 536.4  
+upload_id - The identifier of the upload that resulted in this activity  
+upload_id_str - The unique identifier of the upload in string format  
+external_id - The desired external identifier of the resulting activity  
+from_accepted_tag - No idea  
+pr_count - Number of personal records achieved in the activity was 0  
+total_photo_count - The number of Instagram and Strava photos for this activity was 6  
+has_kudoed - It's my own activity, I did not kudo myself  
+suffer_score - Score assigned by Strava based on the intensity and difficulty of activity was 211  
 
 strava_zones_per_activity.csv
 
---
+score - Relative effort score based on heart rate  
+distribution_buckets - List of buckets with min, max and time spent in zone  
+type - Type of zones (heartrate/power)  
+resource_state - Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 -> "summary", 3 -> "detail"  
+sensor_based - Whether zones are sensor based  
+points - Points given by Strava  
+custom_zones - Whether zones are custom  
+id - Unique id of activity
 
 ## Background Domain Knowledge
 TODO
