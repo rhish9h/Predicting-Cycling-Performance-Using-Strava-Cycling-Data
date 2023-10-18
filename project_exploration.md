@@ -12,7 +12,8 @@
 
 **Dataset Field Meanings:** 
 
-strava_activities.csv:  
+strava_activities.csv:
+
 resource_state - Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 -> "summary", 3 -> "detail"  
 athlete - An instance of MetaAthlete {'id': '{id}', 'resource_state': '{resource_state}'}  
 name - The name of the activity  
@@ -70,6 +71,17 @@ pr_count - Number of personal records achieved in the activity
 total_photo_count - The number of Instagram and Strava photos for this activity  
 has_kudoed - Whether the logged-in athlete has kudoed this activity  
 suffer_score - Score assigned by Strava based on the intensity and difficulty of activity  
+
+strava_zones_per_activity.csv
+
+score - Relative effort score based on heart rate  
+distribution_buckets - List of buckets with min, max and time spent in zone  
+type - Type of zones (heartrate/power)  
+resource_state - Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 -> "summary", 3 -> "detail"  
+sensor_based - Whether zones are sensor based  
+points - Points given by Strava  
+custom_zones - Whether zones are custom  
+id - Unique id of activity
 
 **Dataset File Hash(es):**  
 MD5 (strava_activities.csv) = d10b6bef9919938f089d40a9da207572  
