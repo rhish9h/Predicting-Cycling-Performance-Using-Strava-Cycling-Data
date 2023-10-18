@@ -1,0 +1,12 @@
+Quantitative summary
+
+                 Column  Min   Median       Max
+0              distance  0.0   29.146   162.929
+1  total_elevation_gain  0.0  168.000  4011.100
+2         average_speed  0.0   23.710    44.690
+
+Qualitative summary
+
+             Column  Category_cnt        Most_freq       Least_freq
+0  location_country             2            India    United States
+1       moving_time          1189  0 days 01:00:01  0 days 01:51:38
