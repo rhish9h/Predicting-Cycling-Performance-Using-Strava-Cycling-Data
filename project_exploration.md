@@ -179,13 +179,31 @@ suffer_score - Score assigned by Strava based on the intensity and difficulty of
 
 strava_zones_per_activity.csv
 
-score - Relative effort score based on heart rate  
-distribution_buckets - List of buckets with min, max and time spent in zone  
-type - Type of zones (heartrate/power)  
-resource_state - Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 -> "summary", 3 -> "detail"  
-sensor_based - Whether zones are sensor based  
-points - Points given by Strava  
-custom_zones - Whether zones are custom  
+score - Relative effort score based on heart rate was 176  
+distribution_buckets -  
+Heart Rate -  
+Zone 1: [0-115]: 2min 5sec  
+Zone 2: [115-152]: 1hr 10min 57sec  
+Zone 3: [152-170]: 46min 22sec  
+Zone 4: [170-189]: 17min 5sec  
+Zone 5: [>189]: 0min  
+Power -  
+[0-0]: 10 min 18 sec  
+[0-50]: 2 min 7 sec  
+[50-100]: 12 min 18 sec  
+[100-150]: 31 min 8 sec  
+[150-200]: 52 min 59 sec  
+[200-250]: 15 min 51 sec  
+[250-300]: 9 min 24 sec  
+[300-350]: 1 min 28 sec  
+[350-400]: 29 sec  
+[400-450]: 7 sec  
+[450<]: 20 sec  
+type - Type of zones - both hr and power available  
+resource_state - Detail data  
+sensor_based - yes, it's sensor based  
+points - Points given by Strava was 22  
+custom_zones - Not custom  
 id - Unique id of activity
 
 ### Record 2
@@ -267,13 +285,31 @@ suffer_score - Score assigned by Strava based on the intensity and difficulty of
 
 strava_zones_per_activity.csv
 
-score - Relative effort score based on heart rate  
-distribution_buckets - List of buckets with min, max and time spent in zone  
-type - Type of zones (heartrate/power)  
-resource_state - Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 -> "summary", 3 -> "detail"  
-sensor_based - Whether zones are sensor based  
-points - Points given by Strava  
-custom_zones - Whether zones are custom  
+score - Relative effort score based on heart rate was 211  
+distribution_buckets -  
+Heart Rate -  
+Zone 1: [0-115]: 0min  
+Zone 2: [115-152]: 28sec  
+Zone 3: [152-170]: 2min 30sec  
+Zone 4: [170-189]: 1hr 4min 2sec  
+Zone 5: [>189]: 0min  
+Power -  
+[0-0]: 12 sec  
+[0-50]: 0 sec  
+[50-100]: 1 sec  
+[100-150]: 12 sec  
+[150-200]: 1 min 23 sec  
+[200-250]: 35 min 1 sec  
+[250-300]: 27 min 25 sec  
+[300-350]: 1 min 56 sec  
+[350-400]: 26 sec  
+[400-450]: 17 sec  
+[450<]: 7 sec  
+type - Type of zones - both hr and power available  
+resource_state - Detail data  
+sensor_based - yes, it's sensor based  
+points - Points given by Strava was 201  
+custom_zones - Not custom  
 id - Unique id of activity
 
 ## Background Domain Knowledge
