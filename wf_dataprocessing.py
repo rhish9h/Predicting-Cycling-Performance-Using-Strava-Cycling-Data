@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import json
+from datetime import datetime
+from datetime import timedelta
 
 # Set the display options to show all columns
 pd.set_option('display.max_columns', None)
@@ -83,3 +85,46 @@ print("-------------------------------------------------------------------------
 
 # saving current state - activities with zones - to csv as checkpoint
 activities_with_zones.to_csv('data_processed/activities_with_zones.csv')
+print("-------------------------------------------------------------------------------------------------------")
+print('Exported current state - activities_with_zones to data_processed/activities_with_zones.csv')
+print("-------------------------------------------------------------------------------------------------------")
+
+# Reduce data for initial exploration
+reduced_expl = activities_with_zones.copy()
+reduced_expl = reduced_expl[['name', 'sport_type', 'start_date_local', 'location_country', 'distance', 
+                             'moving_time', 'total_elevation_gain', 'kudos_count', 'athlete_count', 'average_speed',
+                            'average_temp', 'average_watts', 'weighted_average_watts', 'average_heartrate',
+                            'pr_count', 'total_photo_count', 'suffer_score']]
+
+print("------------------------------------- reduced_expl - head ---------------------------------------------")
+print(reduced_expl.head())
+print("-------------------------------------------------------------------------------------------------------")
+
+# get only ride data
+reduced_rides = reduced_expl[reduced_expl['sport_type'] == 'Ride'].drop(columns=['sport_type'])
+
+# Convert start_date_local to datetime object
+# Define the format of the datetime string
+datetime_format = "%Y-%m-%dT%H:%M:%SZ"
+
+# Parse the datetime string into a datetime object
+reduced_rides['start_date_local'] = reduced_rides['start_date_local'].apply(lambda x : datetime.strptime(x, datetime_format))
+
+# convert distance from meters to km
+reduced_rides['distance'] = reduced_rides['distance'].apply(lambda x : round(x / 1000, 3))
+
+# convert moving time from seconds to timedelta
+reduced_rides['moving_time'] = reduced_rides['moving_time'].apply(lambda x : timedelta(seconds=x))
+
+# convert avg speed from m/s to km/h
+reduced_rides['average_speed'] = reduced_rides['average_speed'].apply(lambda x : round(x / 10 * 36, 3))
+
+print("------------------------------------- reduced_rides - head --------------------------------------------")
+print(reduced_rides.head())
+print("-------------------------------------------------------------------------------------------------------")
+
+# saving current state - reduced_rides_expl - to csv as checkpoint
+reduced_rides.to_csv('data_processed/reduced_rides_expl.csv')
+print("-------------------------------------------------------------------------------------------------------")
+print('Exported current state - activities_with_zones to data_processed/reduced_rides_expl.csv')
+print("-------------------------------------------------------------------------------------------------------")
