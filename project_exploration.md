@@ -316,12 +316,24 @@ id - Unique id of activity
 TODO
 
 ## Data Transformation
-### Transformation N
-**Description:** TODO
+### Transformation 1: Combine Zone data with Activities data
+**Description:** 
+During the Data Generation process, 2 datasets were created after fetching data from 
+muliple APIs - strava_activities.csv and strava_zones_per_activity.csv.  
+I added the activity id to the zones data in order to map it to the activities. The zones data had combinations of heart rate zones, power zones and id based on availability. I added 5 columns for different heart rate zones and 11 columns for different power zones. I had to iterate through all rows in zones, parse every zone for either heart rate and/or power and set this data in the combined dataframe. 
 
-**Soundness Justification:** TODO
+**Soundness Justification:**  
+This data is helpful to figure out the effects of time in different zones (heartrate/power) on performance improvement. However, there are a lot of new columns and it was getting a bit more complicated to handle. Although it is not immediately usable, it is going to be very important in the later stages of my project in order to get answers that I meant to find.
 
-(duplicate above as many times as needed; remove this line when done)
+### Transformation 2: Data reduction and unit conversion
+**Description:**  
+I reduced the combined dataset from 74 columns to 17 columns that would be useful immediately ['name', 'sport_type', 'start_date_local', 'location_country', 'distance', 
+'moving_time', 'total_elevation_gain', 'kudos_count', 'athlete_count', 'average_speed',
+'average_temp', 'average_watts', 'weighted_average_watts', 'average_heartrate',
+'pr_count', 'total_photo_count', 'suffer_score']. This was reduced to 5 later on. I also converted units for columns like distance (meters to km), moving_time (seconds to timedelta), average_speed (meters/sec to kph) and changed the datatype of start_date_local to datetime. I also dropped sport_type after filtering only ride data.
+
+**Soundness Justification:**  
+The combined dataset had too many columns. Considering the time constraints and immediate scope, I decided to reduce the data that I feel makes sense at the moment. More analysis of other columns can be done later. Moreover, some of the data isn't exactly easy to read. For example, moving time was in seconds, average speed was in meters/sec. I dropped sport_type because I filtered the dataset to contain only ride data, so that column was redundant.
 
 
 ## Visualization
