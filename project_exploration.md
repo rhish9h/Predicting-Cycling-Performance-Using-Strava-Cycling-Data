@@ -315,6 +315,21 @@ id - Unique id of activity
 ## Background Domain Knowledge
 Cycling is a popular sport with millions of participants all over the world. Cyclists can be at different levels from beginner or recreational to amateur and professional. As they go up the ranks, they start to explore different ways to improve themselves. The simplest way to get better is to just ride more. However, it can be a lot more nuanced than this. Cyclists track their rides using software like Strava and upload data like GPS, speed, elevation, heart rate, power, etc. The data can be available in different combinations as per the preferences of the cyclist. My goal is to figure out a way to understand this data from Strava to find the best performance improvement. The findings for this can be helpful to several cyclists along with me. We have 2 major components here, 1 is what are the factors we can look for that have the effect and 2nd is how do we measure performance improvement. There are different kinds of training, one of which is polarized training, where most of the riding time is spent at a lower intensity (Zone 2) and very few rides out of the week will have higher intensity or intervals (Zone 4/5 or above). Pros have been using this for years and are getting good results. This can be tracked using time in the zone from the data I collected. Other kinds of training can be sweet spot training, strength work, cadence work, hill repetitions, and sprint training. A lot of this training can be combined with others to suit the needs of any event/race that the cyclist could be training for. As far as performance tracking is concerned, one of the ways is to do an FTP (Functional threshold test) where the cyclist needs to go as hard as possible for 20mins and the power output is multiplied by .95 to get the FTP which is supposed to be the approximate 1 hour max power. Several other tests can be done. Something as simple as climbing the same hill starting from the same point can also be a good test. You can check how far you reach every test or even how long it takes you to reach the top. Cycling training can be personal and it's not always a one size fits all solution. All in all, this project should help figure out a way to understand one's data and see what kind of training gets the biggest benefit.
 
+#### References
+
+Vingostg, & Vingostg. (2023). A Beginner’s Guide to cycling Metrics. VTW. https://www.vingo.fit/cycling-for-all/beginners-guide-to-cycling-metrics/
+
+Understanding Strava: six key training metrics. (n.d.). Road Cycling UK. https://roadcyclinguk.com/how-to/understanding-strava-training-metrics.html
+
+Plus, C. (2021). The 5 key areas of training for road cyclists. BikeRadar. https://www.bikeradar.com/advice/fitness-and-training/the-5-key-areas-of-training-for-road-cyclists/
+
+Hurley, S. (2021). Polarized Training For Cyclists: What It Is and How To Try It. TrainerRoad. https://www.trainerroad.com/blog/polarized-training-for-cyclists-what-it-is-and-how-to-try-it/
+
+Evans, J. (2023). What is FTP and why does it matter for cyclists? BikeRadar. https://www.bikeradar.com/advice/fitness-and-training/what-is-ftp-and-why-it-matters-for-cyclists/
+
+How to do an FTP test to test your cycling fitness. (n.d.). Global Cycling Network. https://www.globalcyclingnetwork.com/how-to/training/how-to-do-an-ftp-test-to-test-your-cycling-fitness
+
+
 ## Data Transformation
 ### Transformation 1: Combine Zone data with Activities data
 **Description:** 
