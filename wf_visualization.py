@@ -103,17 +103,43 @@ print('Plotting Scatter plots')
 print("-------------------------------------------------------------------------------------------------------")
 
 # Scatter plots of quantitative data 
-quant_cols = [col for col in quantitative.columns]
-quant_len = len(quant_cols)
+quant_len = len(quant_columns)
 
 for i in range(quant_len):
-    first_col = quant_cols[i]
+    first_col = quant_columns[i]
     
     for j in range(i+1, quant_len):
-        second_col = quant_cols[j]
+        second_col = quant_columns[j]
         plt.scatter(quantitative[first_col], quantitative[second_col], s=7)
         plt.xlabel(first_col)
         plt.ylabel(second_col)
         plt.title(f'Scatter plot {first_col} vs {second_col}')
-        plt.savefig(f'visuals/scatter_{first_col}_vs_{second_col}.png')
         plt.show()
+
+print("------------------------------------- Histograms ------------------------------------------------------")
+print('Plotting Histograms')
+print("-------------------------------------------------------------------------------------------------------")
+
+# Plotting histograms of qualitative features
+
+# location_country
+plt.hist(qualitative['location_country'], bins=2, color='lightblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Location country')
+plt.ylabel('Number of rides in country')
+plt.title('Histogram of location country')
+plt.savefig('visuals/histogram_location_country.png')
+plt.show()
+
+# moving_time
+moving_time = qualitative['moving_time'].copy().sort_values()
+
+plt.hist(moving_time, bins=40, color='lightblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Moving time')
+plt.ylabel('Number of rides by moving time')
+plt.title('Histogram of Moving time')
+
+x_ticks = [time for i, time in enumerate(moving_time) if i % 50 == 0]
+x_labels = [time for i, time in enumerate(moving_time) if i % 50 == 0]
+plt.xticks(x_ticks, x_labels, rotation=90)
+plt.savefig('visuals/histogram_moving_time.png')
+plt.show()
