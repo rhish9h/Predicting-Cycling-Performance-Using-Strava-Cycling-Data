@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Set the display options to show all columns
 pd.set_option('display.max_columns', None)
@@ -96,3 +97,23 @@ print("-------------------------------------------------------------------------
 # write correlation matrix to txt file
 with open('data_processed/correlations.txt', 'w') as file:
     file.write(pretty_corr_matrix)
+
+print("------------------------------------- Scatter plots ---------------------------------------------------")
+print('Plotting Scatter plots')
+print("-------------------------------------------------------------------------------------------------------")
+
+# Scatter plots of quantitative data 
+quant_cols = [col for col in quantitative.columns]
+quant_len = len(quant_cols)
+
+for i in range(quant_len):
+    first_col = quant_cols[i]
+    
+    for j in range(i+1, quant_len):
+        second_col = quant_cols[j]
+        plt.scatter(quantitative[first_col], quantitative[second_col], s=7)
+        plt.xlabel(first_col)
+        plt.ylabel(second_col)
+        plt.title(f'Scatter plot {first_col} vs {second_col}')
+        plt.savefig(f'visuals/scatter_{first_col}_vs_{second_col}.png')
+        plt.show()
