@@ -325,7 +325,32 @@ TODO
 
 
 ## Visualization
-### Visual N
-**Analysis:** TODO
+### Visual 1: Scatter plot distance vs total elevation gain
+**Analysis:**  
+It shows an increasing trend, as distance increases, total elevation gain increases as well.
+It makes sense as riding longer distances is usually required to climb up hills, unless the ride
+starts at the base of a steep climb. So considering usual conditions, where hills are slightly 
+further away from where I generally start from, this graph makes sense.
 
-(duplicate above as many times as needed; remove this line when done)
+### Visual 2: Scatter plot distance vs average speed
+**Analysis:**  
+Here, the average speed looks higher in bursts around the 20km mark. It's around 20 - 30 kph for 
+the first 80km. The normal trend is that longer rides have lower speed. This also makes sense as I 
+would go slower to conserve energy for longer rides, it's easier to push harder for shorter rides.
+There are sparse dots that go closer to 40kph, but I'm sure most of them are from races.
+
+### Visual 3: Scatter plot elevation gain vs average speed
+**Analysis:**  
+This one is similar to visual 2. For lower elevation gain, average speed is higher and as elevation
+increases the average speed starts to drop. This happens because it's harder to go fast up hills as 
+you're mostly working against gravity. There are some slower rides at lower elevation gain as well, but they can be recovery rides or commutes.
+
+### Visual 4: Histogram of location country
+**Analysis:**  
+I've only ridden my bike in the US and in India, so the histogram only has 2 bins. I've spent about
+7 years cycling in India compared to about half a year in the US. So that explains the disparity in the number of rides.
+
+### Visual 5: Histogram of Moving time
+**Analysis:**  
+The moving time varies between a minute and a half to about 4 and a half hours. But looks like I've
+ridden about similar number of rides for all durations except for ~31mins, ~48mins, ~1hour and ~1hr 15min.
