@@ -1,5 +1,5 @@
 #### SER594: Project Proposal
-#### Predicting cycling performance improvement using Strava cycling data (title)
+#### Predicting cycling performance using Strava cycling data (title)
 #### Rhishabh Suhas Hattarki (author)
 #### 30 October 2023 (date)
 
@@ -28,7 +28,7 @@ Developing a personalized training tool empowers athletes to identify optimal tr
 
 Data Sourcing: 
 
-I utilized Strava's comprehensive set of APIs (accessible at https://developers.strava.com/docs/reference/) to retrieve detailed activity data, including time spent in specific training zones. To further enhance the depth of analysis, additional APIs can be used to access per-second data, enabling a more fine-grained examination of cycling performance.
+I utilized Strava's comprehensive set of APIs (accessible at https://developers.strava.com/docs/reference/) to retrieve my personal detailed activity data, including time spent in specific training zones. To further enhance the depth of analysis, additional APIs can be used to access per-second ride data streams, enabling a more fine-grained examination of cycling performance.
 
 Background Knowledge: 
 
