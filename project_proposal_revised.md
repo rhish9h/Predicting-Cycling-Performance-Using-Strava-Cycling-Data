@@ -16,11 +16,11 @@ The data I'll utilize is sourced from Strava, where I've consistently logged act
 
 Research Questions:
 
-RO1: To describe the trends within the time spent in training zones over the duration of training periods.
-RO2: To describe the trends within the performance changes over the duration of training periods.
-RO3: To predict the value of functional threshold power (FTP) using the Strava data of the previous training block.
-RO4: To defend the model for performing the prediction of FTP in RO3.
-RO5: To evaluate the causal relationships implied by the RO3 model.
+- RO1: To describe the trends within the time spent in training zones over the duration of training periods.
+- RO2: To describe the trends within the performance changes over the duration of training periods.
+- RO3: To predict the value of functional threshold power (FTP) using the Strava data of the previous training block.
+- RO4: To defend the model for performing the prediction of FTP in RO3.
+- RO5: To evaluate the causal relationships implied by the RO3 model.
 
 Intellectual Merit:
 
@@ -32,14 +32,22 @@ I utilized Strava's comprehensive set of APIs (accessible at https://developers.
 
 Background Knowledge: 
 
-Medhus, J. B. (n.d.). Basic Principles of cycling training for Beginners. Training4cyclists.com. https://www.training4cyclists.com/basic-principles-of-cycling-training/
+- Medhus, J. B. (n.d.). Basic Principles of cycling training for Beginners. Training4cyclists.com. https://www.training4cyclists.com/basic-principles-of-cycling-training/
 
-Mead, B. (2023). A comparison of polarized, sweet spot, and pyramidal training. Fast Talk Laboratories. https://www.fasttalklabs.com/articles/a-comparison-of-polarized-sweet-spot-and-pyramidal-training/
+- Mead, B. (2023). A comparison of polarized, sweet spot, and pyramidal training. Fast Talk Laboratories. https://www.fasttalklabs.com/articles/a-comparison-of-polarized-sweet-spot-and-pyramidal-training/
 
-Yeager, S. (2022, February 9). Your guide to the key cycling metrics that can make your rides better. Bicycling. https://www.bicycling.com/training/a38918736/cycling-metrics-guide/
+- Yeager, S. (2022, February 9). Your guide to the key cycling metrics that can make your rides better. Bicycling. https://www.bicycling.com/training/a38918736/cycling-metrics-guide/
 
 Related Work:
 
-Demosthenous, G., Kyriakou, M., & Vassiliades, V. (2022). Deep reinforcement learning for improving competitive cycling performance. Expert Systems With Applications, 203, 117311. https://doi.org/10.1016/j.eswa.2022.117311
+- Demosthenous, G., Kyriakou, M., & Vassiliades, V. (2022). Deep reinforcement learning for improving competitive cycling performance. Expert Systems With Applications, 203, 117311. https://doi.org/10.1016/j.eswa.2022.117311
 
-Neal, C. M., Hunter, A. M., Brennan, L., O’Sullivan, A., Hamilton, D. L., De Vito, G., & Galloway, S. D. R. (2013). Six weeks of a polarized training-intensity distribution leads to greater physiological and performance adaptations than a threshold model in trained cyclists. Journal of Applied Physiology, 114(4), 461–471. https://doi.org/10.1152/japplphysiol.00652.2012
+- Neal, C. M., Hunter, A. M., Brennan, L., O’Sullivan, A., Hamilton, D. L., De Vito, G., & Galloway, S. D. R. (2013). Six weeks of a polarized training-intensity distribution leads to greater physiological and performance adaptations than a threshold model in trained cyclists. Journal of Applied Physiology, 114(4), 461–471. https://doi.org/10.1152/japplphysiol.00652.2012
+
+- Anderson, R. (2023, January 16). Running Smart with Machine Learning and Strava - Towards Data Science. Medium. https://towardsdatascience.com/running-smart-with-machine-learning-and-strava-9ba186decde0
+
+- Data mining in sporting activities created by sports trackers. (2013, August 1). IEEE Conference Publication | IEEE Xplore. https://ieeexplore.ieee.org/abstract/document/6724329
+
+- Jobson, S. A., Passfield, L., Atkinson, G., Barton, G., & Scarf, P. (2009). The analysis and utilization of cycling training data. Sports Medicine, 39(10), 833–844. https://doi.org/10.2165/11317840-000000000-00000
+
+- Kholkine, L., De Schepper, T., Verdonck, T., & Latré, S. (2020). A Machine learning approach for Road cycling race performance Prediction. In Communications in computer and information science (pp. 103–112). https://doi.org/10.1007/978-3-030-64912-8_9
