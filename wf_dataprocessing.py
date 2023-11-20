@@ -237,8 +237,8 @@ def preprocess():
         'Power Zone 10': 'sum',
         'Power Zone 11': 'sum',
         'ftp': 'max'
-    })
-    zones_ftp_power_agg = zones_ftp_power_agg_with_na.dropna()
+    }).reset_index()
+    zones_ftp_power_agg = zones_ftp_power_agg_with_na.dropna().drop(columns=['year', 'month'])
     zones_ftp_power_agg.to_csv('data_processed/zones_ftp_power_agg.csv')
     print("-------------------------------------------------------------------------------------------------------")
     print('Exported current state - zones_ftp_power_agg to data_processed/zones_ftp_power_agg.csv')
@@ -258,8 +258,8 @@ def preprocess():
         'HR Zone 4': 'sum',
         'HR Zone 5': 'sum',
         'ftp': 'max'
-    })
-    zones_ftp_hr_agg = zones_ftp_hr_agg_with_na.dropna()
+    }).reset_index()
+    zones_ftp_hr_agg = zones_ftp_hr_agg_with_na.dropna().drop(columns=['year', 'month'])
     zones_ftp_hr_agg.to_csv('data_processed/zones_ftp_hr_agg.csv')
     print("-------------------------------------------------------------------------------------------------------")
     print('Exported current state - zones_ftp_hr_agg to data_processed/zones_ftp_hr_agg.csv')
@@ -291,8 +291,8 @@ def preprocess():
         'Power Zone 10': 'sum',
         'Power Zone 11': 'sum',
         'ftp': 'max'
-    })
-    zones_ftp_power_hr_agg = zones_ftp_power_hr_agg_with_na.dropna()
+    }).reset_index()
+    zones_ftp_power_hr_agg = zones_ftp_power_hr_agg_with_na.dropna().drop(columns=['year', 'month'])
     zones_ftp_power_hr_agg.to_csv('data_processed/zones_ftp_power_hr_agg.csv')
     print("-------------------------------------------------------------------------------------------------------")
     print('Exported current state - zones_ftp_power_hr_agg to data_processed/zones_ftp_power_hr_agg.csv')
