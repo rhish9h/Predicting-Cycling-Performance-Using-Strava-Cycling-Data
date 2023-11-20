@@ -1,0 +1,19 @@
+Dataset                                  Method                                MSE                   R2
+zones_ftp_power_agg                      Linear Regression         1065.7726195411         0.2504477979
+zones_ftp_hr_agg                         Linear Regression          709.4515213280         0.5259283988
+zones_ftp_power_hr_agg                   Linear Regression         1024.1002124636         0.3156730053
+zones_ftp_power_agg_augmented            Linear Regression          833.3858467975         0.4078513023
+zones_ftp_hr_agg_augmented               Linear Regression          893.8991176064         0.5713661959
+zones_ftp_power_hr_agg_augmented         Linear Regression          541.6822850688         0.7402577831
+zones_ftp_power_agg                      Ridge                      768.4673897405         0.4595409812
+zones_ftp_hr_agg                         Ridge                      608.4168959479         0.5934420276
+zones_ftp_power_hr_agg                   Ridge                      503.7133687483         0.6634072997
+zones_ftp_power_agg_augmented            Ridge                      747.3979366337         0.4689486070
+zones_ftp_hr_agg_augmented               Ridge                      874.7950946423         0.5805267711
+zones_ftp_power_hr_agg_augmented         Ridge                      512.0358563414         0.7544735501
+zones_ftp_power_agg                      Lasso                      737.7667044983         0.4811326095
+zones_ftp_hr_agg                         Lasso                      551.4458521031         0.6315113715
+zones_ftp_power_hr_agg                   Lasso                      382.7173371675         0.7442595930
+zones_ftp_power_agg_augmented            Lasso                      728.8240772362         0.4821459594
+zones_ftp_hr_agg_augmented               Lasso                      842.9293581207         0.5958067189
+zones_ftp_power_hr_agg_augmented         Lasso                      515.4728665511         0.7528254684

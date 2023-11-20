@@ -28,6 +28,14 @@ def train_predict_get_errors(filepath, ml_model, model_name):
     mse, r2 = get_errors(y_test, y_pred)
     return mse, r2
 
+def write_summary_to_file(summary, summary_filepath):
+    with open(summary_filepath, 'w') as file:
+        file.write(f'{"Dataset":40} {"Method":20} {"MSE":>20} {"R2":>20}\n')
+
+    with open(summary_filepath, '+a') as file:
+        for _, row in summary.iterrows():
+            file.write(f"{row.loc['Dataset']:40} {row.loc['Method']:20} {row.loc['MSE']:20.10f} {row.loc['R2']:20.10f}\n")
+
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
     summary = pd.DataFrame(columns=summary_columns)
@@ -35,14 +43,17 @@ def evaluate():
                 'zones_ftp_power_agg_augmented', 'zones_ftp_hr_agg_augmented', 'zones_ftp_power_hr_agg_augmented']
     models = [('Linear Regression', LinearRegression()), ('Ridge', Ridge()), ('Lasso', Lasso())]
 
-    for dataset in datasets:
-        for model_name, model in models:
+    for model_name, model in models:
+        for dataset in datasets:
             mse, r2 = train_predict_get_errors(dataset, model, model_name)
             summary.loc[len(summary)] = [dataset, model_name, mse, r2]
 
     print('-----------------------------Summary-----------------------------')
     print(summary)
-    
+
+    summary_filepath = 'evaluation/summary.txt'
+    write_summary_to_file(summary, summary_filepath)
+
 
 if __name__ == '__main__':
     evaluate()
