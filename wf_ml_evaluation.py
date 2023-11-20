@@ -31,8 +31,12 @@ def train_predict_get_errors(filepath, ml_model):
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
     summary = pd.DataFrame(columns=summary_columns)
-    mse, r2 = train_predict_get_errors('zones_ftp_power_agg', LinearRegression())
-    summary.loc[len(summary)] = ['zones_ftp_power_agg', 'Linear Regression', mse, r2]
+    datasets = ['zones_ftp_power_agg', 'zones_ftp_hr_agg', 'zones_ftp_power_hr_agg']
+
+    for dataset in datasets:
+        mse, r2 = train_predict_get_errors(dataset, LinearRegression())
+        summary.loc[len(summary)] = [dataset, 'Linear Regression', mse, r2]
+
     print('-----------------------------Summary-----------------------------')
     print(summary)
     
