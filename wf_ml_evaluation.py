@@ -11,7 +11,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 def get_errors(y_test, y_pred):
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-
     return mse, r2
 
 def split_and_transform(filepath):
@@ -25,7 +24,6 @@ def split_and_transform(filepath):
 def train_predict_get_errors(filepath, ml_model, model_name):
     X_train_scaled, X_test_scaled, y_train, y_test = split_and_transform(filepath)
     wf_ml_training.train_model(X_train_scaled, y_train, ml_model, filepath + '_' + model_name)
-
     y_pred = wf_ml_prediction.predict(filepath + '_' + model_name, X_test_scaled)
     mse, r2 = get_errors(y_test, y_pred)
     return mse, r2
