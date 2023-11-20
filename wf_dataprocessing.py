@@ -298,6 +298,30 @@ def preprocess():
     print('Exported current state - zones_ftp_power_hr_agg to data_processed/zones_ftp_power_hr_agg.csv')
     print("-------------------------------------------------------------------------------------------------------")
 
+    # Function to perform data augmentation
+    def augment_data(dataframe, num_augmentations=5, noise_factor=0.1):
+        augmented_dataframes = dataframe.copy()
+        
+        for _ in range(num_augmentations):
+            augmented_sample = dataframe.copy()
+            for column in dataframe.columns:
+                if column != 'ftp':
+                    augmented_sample[column] *= np.random.uniform(1 - noise_factor, 1 + noise_factor)
+            augmented_dataframes = pd.concat([augmented_dataframes, augmented_sample], ignore_index=True)
+        return augmented_dataframes.reset_index(drop=True)
+
+    zones_ftp_power_agg_augmented = augment_data(zones_ftp_power_agg, num_augmentations=3)
+    zones_ftp_power_agg_augmented.to_csv('data_processed/zones_ftp_power_agg_augmented.csv')
+    zones_ftp_hr_agg_augmented = augment_data(zones_ftp_hr_agg, num_augmentations=3)
+    zones_ftp_hr_agg_augmented.to_csv('data_processed/zones_ftp_hr_agg_augmented.csv')
+    zones_ftp_power_hr_agg_augmented = augment_data(zones_ftp_power_hr_agg, num_augmentations=3)
+    zones_ftp_power_hr_agg_augmented.to_csv('data_processed/zones_ftp_power_hr_agg_augmented.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+    print('Exported current state - zones_ftp_power_agg_augmented to data_processed/zones_ftp_power_agg_augmented.csv')
+    print('Exported current state - zones_ftp_hr_agg_augmented to data_processed/zones_ftp_hr_agg_augmented.csv')
+    print('Exported current state - zones_ftp_power_hr_agg_augmented to data_processed/zones_ftp_power_hr_agg_augmented.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+
 
 if __name__ == '__main__':
     preprocess()
