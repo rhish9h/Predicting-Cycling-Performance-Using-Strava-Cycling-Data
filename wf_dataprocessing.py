@@ -265,6 +265,39 @@ def preprocess():
     print('Exported current state - zones_ftp_hr_agg to data_processed/zones_ftp_hr_agg.csv')
     print("-------------------------------------------------------------------------------------------------------")
 
+    # aggregate power + hr data
+    zones_ftp_power_hr_month = zones_ftp_power_hr.copy()
+    zones_ftp_power_hr_month['month'] = pd.to_datetime(zones_ftp_power_hr_month['start_date_local']).dt.month_name()
+    zones_ftp_power_hr_month['year'] = pd.to_datetime(zones_ftp_power_hr_month['start_date_local']).dt.year
+    zones_ftp_power_hr_agg_with_na = zones_ftp_power_hr_month.groupby(['year', 'month']).agg({
+        'distance': 'sum',
+        'moving_time': 'sum',
+        'average_heartrate': 'sum',
+        'HR Zone 1': 'sum',
+        'HR Zone 2': 'sum',
+        'HR Zone 3': 'sum',
+        'HR Zone 4': 'sum',
+        'HR Zone 5': 'sum',
+        'kilojoules': 'sum',
+        'Power Zone 1': 'sum',
+        'Power Zone 2': 'sum',
+        'Power Zone 3': 'sum',
+        'Power Zone 4': 'sum',
+        'Power Zone 5': 'sum',
+        'Power Zone 6': 'sum',
+        'Power Zone 7': 'sum',
+        'Power Zone 8': 'sum',
+        'Power Zone 9': 'sum',
+        'Power Zone 10': 'sum',
+        'Power Zone 11': 'sum',
+        'ftp': 'max'
+    })
+    zones_ftp_power_hr_agg = zones_ftp_power_hr_agg_with_na.dropna()
+    zones_ftp_power_hr_agg.to_csv('data_processed/zones_ftp_power_hr_agg.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+    print('Exported current state - zones_ftp_power_hr_agg to data_processed/zones_ftp_power_hr_agg.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+
 
 if __name__ == '__main__':
     preprocess()
