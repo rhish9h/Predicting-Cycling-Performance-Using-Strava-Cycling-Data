@@ -127,7 +127,65 @@ def preprocess():
     # saving current state - reduced_rides_expl - to csv as checkpoint
     reduced_rides.to_csv('data_processed/reduced_rides_expl.csv')
     print("-------------------------------------------------------------------------------------------------------")
-    print('Exported current state - activities_with_zones to data_processed/reduced_rides_expl.csv')
+    print('Exported current state - activities_with_zones reduced_rides to data_processed/reduced_rides_expl.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+
+    # combine ftp data with zone data, create copy and add column with nans
+    activities_zones_ftp_full_data = activities_with_zones.copy()
+    activities_zones_ftp_full_data['ftp'] = np.nan
+    
+    # read power stream of all activities
+    power_stream_filepath = 'data_original/strava_power_streams_per_activity.csv'
+    power_stream = pd.read_csv(power_stream_filepath)
+
+    print("------------------------------------- power_stream - head ---------------------------------------------")
+    print(power_stream.head(1))
+    print("-------------------------------------------------------------------------------------------------------")
+    
+    # function to calculate ftp by running sliding window average
+    # get average of window_size, preferably 1200 and multiply by 0.95 to get ftp (estimate 1 hour power) from 20 min average power
+    def sliding_window_ftp(arr, window_size=1200):
+        max_20_min_power = 0
+        a_len = len(arr)
+        if a_len < window_size:
+            return 0
+        cum_power = 0
+        
+        for i in range(window_size):
+            cum_power += arr[i]
+
+        max_20_min_power = cum_power / window_size
+        left = 0
+        right = window_size
+
+        while right < a_len:
+            cum_power -= arr[left]
+            cum_power += arr[right]
+            left += 1
+            right += 1
+            cur_average = cum_power / a_len
+            if cur_average > max_20_min_power:
+                max_20_min_power = cur_average
+
+        return max_20_min_power * 0.95
+    
+    seconds_in_20_mins = 20 * 60
+
+    # iterate through power_stream, parse data, calculate 20 min average, get ftp per ride and add to dataset
+    for idx, row in power_stream.iterrows():
+        id = row.loc['id']
+        watts = row.loc['watts']
+        if type(watts) == type(.1):
+            continue
+        cleaned_watts = watts.replace("'", '"').replace('None', '0')
+        parsed_watts = json.loads(cleaned_watts)['data']
+        ftp_based_on_ride = sliding_window_ftp(parsed_watts, seconds_in_20_mins)
+        activities_zones_ftp_full_data.loc[activities_zones_ftp_full_data['id'] == id, 'ftp'] = ftp_based_on_ride
+
+    # save to file
+    activities_zones_ftp_full_data.to_csv('data_processed/activities_zones_ftp_full_data.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+    print('Exported current state - activities_zones_ftp_full_data to data_processed/activities_zones_ftp_full_data.csv')
     print("-------------------------------------------------------------------------------------------------------")
 
 if __name__ == '__main__':
