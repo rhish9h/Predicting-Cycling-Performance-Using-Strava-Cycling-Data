@@ -190,15 +190,15 @@ def preprocess():
 
     # reduce zones ftp data
     full_data_only_rides = activities_zones_ftp_full_data[activities_zones_ftp_full_data['sport_type'] == 'Ride']
-    zones_ftp_reduced = full_data_only_rides[['distance', 'moving_time', 'start_date_local', 'average_watts', 'average_heartrate', 'HR Zone 1', 'HR Zone 2', 'HR Zone 3', 'HR Zone 4', 'HR Zone 5', 'Power Zone 1', 'Power Zone 2', 'Power Zone 3', 'Power Zone 4', 'Power Zone 5', 'Power Zone 6', 'Power Zone 7', 'Power Zone 8', 'Power Zone 9', 'Power Zone 10', 'Power Zone 11', 'ftp']]
+    zones_ftp_reduced = full_data_only_rides[['distance', 'moving_time', 'start_date_local', 'kilojoules', 'average_heartrate', 'HR Zone 1', 'HR Zone 2', 'HR Zone 3', 'HR Zone 4', 'HR Zone 5', 'Power Zone 1', 'Power Zone 2', 'Power Zone 3', 'Power Zone 4', 'Power Zone 5', 'Power Zone 6', 'Power Zone 7', 'Power Zone 8', 'Power Zone 9', 'Power Zone 10', 'Power Zone 11', 'ftp']]
     zones_ftp_reduced.to_csv('data_processed/zones_ftp_reduced.csv')
     print("-------------------------------------------------------------------------------------------------------")
     print('Exported current state - zones_ftp_reduced to data_processed/zones_ftp_reduced.csv')
     print("-------------------------------------------------------------------------------------------------------")
 
     # power focused data
-    zones_ftp_power_with_na = zones_ftp_reduced[['distance', 'moving_time', 'start_date_local', 'average_watts', 'Power Zone 1', 'Power Zone 2', 'Power Zone 3', 'Power Zone 4', 'Power Zone 5', 'Power Zone 6', 'Power Zone 7', 'Power Zone 8', 'Power Zone 9', 'Power Zone 10', 'Power Zone 11', 'ftp']]
-    zones_ftp_power = zones_ftp_power_with_na.dropna(subset=['average_watts'])
+    zones_ftp_power_with_na = zones_ftp_reduced[['distance', 'moving_time', 'start_date_local', 'kilojoules', 'Power Zone 1', 'Power Zone 2', 'Power Zone 3', 'Power Zone 4', 'Power Zone 5', 'Power Zone 6', 'Power Zone 7', 'Power Zone 8', 'Power Zone 9', 'Power Zone 10', 'Power Zone 11', 'ftp']]
+    zones_ftp_power = zones_ftp_power_with_na.dropna(subset=['kilojoules'])
     zones_ftp_power.to_csv('data_processed/zones_ftp_power.csv')
     print("-------------------------------------------------------------------------------------------------------")
     print('Exported current state - zones_ftp_power to data_processed/zones_ftp_power.csv')
@@ -211,7 +211,7 @@ def preprocess():
     print('Exported current state - zones_ftp_hr to data_processed/zones_ftp_hr.csv')
     print("-------------------------------------------------------------------------------------------------------")
 
-    zones_ftp_power_hr = zones_ftp_reduced.dropna(subset=['average_heartrate', 'average_watts'])
+    zones_ftp_power_hr = zones_ftp_reduced.dropna(subset=['average_heartrate', 'kilojoules'])
     zones_ftp_power_hr.to_csv('data_processed/zones_ftp_power_hr.csv')
     print("-------------------------------------------------------------------------------------------------------")
     print('Exported current state - zones_ftp_power_hr to data_processed/zones_ftp_power_hr.csv')
