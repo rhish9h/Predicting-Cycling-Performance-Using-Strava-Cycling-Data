@@ -31,7 +31,8 @@ def train_predict_get_errors(filepath, ml_model, model_name):
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
     summary = pd.DataFrame(columns=summary_columns)
-    datasets = ['zones_ftp_power_agg', 'zones_ftp_hr_agg', 'zones_ftp_power_hr_agg']
+    datasets = ['zones_ftp_power_agg', 'zones_ftp_hr_agg', 'zones_ftp_power_hr_agg',
+                'zones_ftp_power_agg_augmented', 'zones_ftp_hr_agg_augmented', 'zones_ftp_power_hr_agg_augmented']
     models = [('Linear Regression', LinearRegression()), ('Ridge', Ridge()), ('Lasso', Lasso())]
 
     for dataset in datasets:
