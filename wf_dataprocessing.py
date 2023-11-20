@@ -204,6 +204,13 @@ def preprocess():
     print('Exported current state - zones_ftp_power to data_processed/zones_ftp_power.csv')
     print("-------------------------------------------------------------------------------------------------------")
 
+    zones_ftp_hr_with_na = zones_ftp_reduced[['distance', 'moving_time', 'start_date_local', 'average_heartrate', 'HR Zone 1', 'HR Zone 2', 'HR Zone 3', 'HR Zone 4', 'HR Zone 5', 'ftp']]
+    zones_ftp_hr = zones_ftp_hr_with_na.dropna(subset=['average_heartrate'])
+    zones_ftp_hr.to_csv('data_processed/zones_ftp_hr.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+    print('Exported current state - zones_ftp_hr to data_processed/zones_ftp_hr.csv')
+    print("-------------------------------------------------------------------------------------------------------")
+
 
 if __name__ == '__main__':
     preprocess()
