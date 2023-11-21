@@ -28,17 +28,31 @@ def train_predict_get_errors(filepath, ml_model, model_name):
     mse, r2 = get_errors(y_test, y_pred)
     return mse, r2
 
-def write_summary_to_file(summary, summary_filepath):
+def write_first_to_summary_file(summary, summary_filepath):
     with open(summary_filepath, 'w') as file:
+        file.write('First model:\n\n')
+        print('First model:\n')
         file.write(f'{"Dataset":40} {"Method":20} {"MSE":>20} {"R2":>20}\n')
+        print(f'{"Dataset":40} {"Method":20} {"MSE":>20} {"R2":>20}')
+        row=summary.iloc[0]
+        file.write(f"{row.loc['Dataset']:40} {row.loc['Method']:20} {row.loc['MSE']:20.10f} {row.loc['R2']:20.10f}\n")
+        print(f"{row.loc['Dataset']:40} {row.loc['Method']:20} {row.loc['MSE']:20.10f} {row.loc['R2']:20.10f}")
 
+def write_summary_to_file(summary, summary_filepath):
     with open(summary_filepath, '+a') as file:
+        file.write('\nAll models including alternative models:\n\n')
+        print('\nAll models including alternative models:\n')
+        file.write(f'{"Dataset":40} {"Method":20} {"MSE":>20} {"R2":>20}\n')
+        print(f'{"Dataset":40} {"Method":20} {"MSE":>20} {"R2":>20}')
+
         for _, row in summary.iterrows():
             file.write(f"{row.loc['Dataset']:40} {row.loc['Method']:20} {row.loc['MSE']:20.10f} {row.loc['R2']:20.10f}\n")
+            print(f"{row.loc['Dataset']:40} {row.loc['Method']:20} {row.loc['MSE']:20.10f} {row.loc['R2']:20.10f}")
 
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
     summary = pd.DataFrame(columns=summary_columns)
+
     datasets = ['zones_ftp_power_agg', 'zones_ftp_hr_agg', 'zones_ftp_power_hr_agg',
                 'zones_ftp_power_agg_augmented', 'zones_ftp_hr_agg_augmented', 'zones_ftp_power_hr_agg_augmented']
     models = [('Linear Regression', LinearRegression()), ('Ridge', Ridge()), ('Lasso', Lasso())]
@@ -49,9 +63,9 @@ def evaluate():
             summary.loc[len(summary)] = [dataset, model_name, mse, r2]
 
     print('-----------------------------Summary-----------------------------')
-    print(summary)
 
     summary_filepath = 'evaluation/summary.txt'
+    write_first_to_summary_file(summary, summary_filepath)
     write_summary_to_file(summary, summary_filepath)
 
 
