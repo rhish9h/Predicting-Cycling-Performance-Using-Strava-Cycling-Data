@@ -1,7 +1,7 @@
-#### SERX94: Experimentation
-#### TODO (title)
-#### TODO (author)
-#### TODO (date)
+#### SER594: Experimentation
+#### Predicting cycling performance using Strava cycling data (title)
+#### Rhishabh Suhas Hattarki (author)
+#### 20 November 2023 (date)
 
 
 ## Explainable Records
