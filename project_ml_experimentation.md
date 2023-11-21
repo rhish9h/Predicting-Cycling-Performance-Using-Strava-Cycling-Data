@@ -86,16 +86,14 @@ actual FTP: 180.31079166666663
 
 ## Experiments 
 ### Varying A
-**Prediction Trend Seen:** TODO
+**Prediction Trend Seen:** In this experiment, I increased the average_heartrate (cumulative) with 100 for 5 iterations and reran the prediction. I saw a significant increase in ftp in a directly correlated way. With base of 180.3 watts, with the initial 100 increment, ftp rose to 187.9 and then with the last 500 increment, the ftp was at 202.3. So average_heartrate is directly correlated to ftp.
 
 ### Varying B
-**Prediction Trend Seen:** TODO
+**Prediction Trend Seen:** In this experiment, I increased the Power Zone 7 (cumulative) with 100 for 5 iterations and reran the prediction. I saw a similar trend as previous with ftp increasing, however, the jumps in ftp were smaller as compared to hr. The first jump at 100 increment was only 184.6 and the last one was 186.1. So it can be seen that Power Zone 7 is also directly correlated, however not as much as average_heartrate.
 
 ### Varying A and B together
-**Prediction Trend Seen:** TODO
+**Prediction Trend Seen:** In this experiment, I increased both average_heartrate and Power Zone 7 with 100 each for 5 iterations. Since both were directly correlated, it makes sense as to why we saw a similar trend with increased magnitude. The first jump was 188.2, highest so far and the last was 204.2.
 
 
 ### Varying A and B inversely
-**Prediction Trend Seen:** TODO
-
-(duplicate above as many times as needed; remove this line when done)
+**Prediction Trend Seen:** In this experiment, I decreased average_heartrate by 100 and increased Power Zone 7 by 100 for 5 iterations. This time the predicted ftp started dropping, the first iteration saw 181, which is higher than base, however with increase in iterations, it started dropping. The last iteration saw 168. So there was an initial increase and then eventual fall. So the average_heartrate has higher weightage as compared to Power Zone 7 in this model.
