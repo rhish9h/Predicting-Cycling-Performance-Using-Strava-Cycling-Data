@@ -70,6 +70,20 @@ def predict_to_understand(filepath, model_name, ml_model):
     print(f'predicted FTP: {y_pred[5]}')
     print(f'actual FTP: {y_test.iloc[5]}\n')
 
+def variable_change_experiment(X_test, scaler, filepath, model_name, variableA, variableB=None):
+    X_test_default = X_test.iloc[5:6]
+    init_variableA = X_test_default.at[X_test_default.index[0], variableA]
+    print('init variable A', init_variableA)
+
+    for i in range(5):
+        X_test_cur = X_test.iloc[5:6].copy()
+        new_value = init_variableA + (i+1) * 50
+        print('new variable A', new_value)
+        X_test_cur.at[X_test_cur.index[0], variableA] = new_value
+        X_test_cur_scaled = scaler.transform(X_test_cur)
+        y_pred_cur = wf_ml_prediction.predict(filepath + '_' + model_name, X_test_cur_scaled)
+        print(f'Changed ', y_pred_cur)
+
 def feature_importance_experiment(filepath, model_name, ml_model):
     zones_ftp_power_agg = pd.read_csv(f'data_processed/{filepath}.csv')
     X_train, X_test, y_train, y_test = train_test_split(zones_ftp_power_agg.iloc[:, :-1], zones_ftp_power_agg.iloc[:, -1], test_size=0.2, random_state=42)
@@ -89,18 +103,7 @@ def feature_importance_experiment(filepath, model_name, ml_model):
     print(f'actual FTP: {y_test.iloc[5]}\n')
 
     print('Change variable A: average_heartrate')
-    X_test_default = X_test.iloc[5:6]
-    init_hr = X_test_default.at[X_test_default.index[0], 'average_heartrate']
-    print('init hr', init_hr)
-
-    for i in range(5):
-        X_test_cur = X_test.iloc[5:6].copy()
-        new_value = init_hr + (i+1) * 50
-        print('new hr', new_value)
-        X_test_cur.at[X_test_cur.index[0], 'average_heartrate'] = new_value
-        X_test_cur_scaled = scaler.transform(X_test_cur)
-        y_pred_cur = wf_ml_prediction.predict(filepath + '_' + model_name, X_test_cur_scaled)
-        print(f'Changed ', y_pred_cur)
+    variable_change_experiment(X_test, scaler, filepath, model_name, 'average_heartrate')
 
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
