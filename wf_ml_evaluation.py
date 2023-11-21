@@ -70,6 +70,38 @@ def predict_to_understand(filepath, model_name, ml_model):
     print(f'predicted FTP: {y_pred[5]}')
     print(f'actual FTP: {y_test.iloc[5]}\n')
 
+def feature_importance_experiment(filepath, model_name, ml_model):
+    zones_ftp_power_agg = pd.read_csv(f'data_processed/{filepath}.csv')
+    X_train, X_test, y_train, y_test = train_test_split(zones_ftp_power_agg.iloc[:, :-1], zones_ftp_power_agg.iloc[:, -1], test_size=0.2, random_state=42)
+
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    wf_ml_training.train_model(X_train_scaled, y_train, ml_model, filepath + '_' + model_name)
+    y_pred = wf_ml_prediction.predict(filepath + '_' + model_name, X_test_scaled)
+    
+    _, X_test, _, _ = split_without_transform(filepath)
+    print(f'Using model {model_name} on dataset {filepath}.\n')
+
+    print(f'input variables: {X_test.iloc[5]}')
+    print(f'predicted FTP: {y_pred[5]}')
+    print(f'actual FTP: {y_test.iloc[5]}\n')
+
+    print('Change variable A: average_heartrate')
+    X_test_default = X_test.iloc[5:6]
+    init_hr = X_test_default.at[X_test_default.index[0], 'average_heartrate']
+    print('init hr', init_hr)
+
+    for i in range(5):
+        X_test_cur = X_test.iloc[5:6].copy()
+        new_value = init_hr + (i+1) * 50
+        print('new hr', new_value)
+        X_test_cur.at[X_test_cur.index[0], 'average_heartrate'] = new_value
+        X_test_cur_scaled = scaler.transform(X_test_cur)
+        y_pred_cur = wf_ml_prediction.predict(filepath + '_' + model_name, X_test_cur_scaled)
+        print(f'Changed ', y_pred_cur)
+
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
     summary = pd.DataFrame(columns=summary_columns)
@@ -89,8 +121,11 @@ def evaluate():
     write_first_to_summary_file(summary, summary_filepath)
     write_summary_to_file(summary, summary_filepath)
 
-    print('\n----------------------------Experiment----------------------------')
+    print('\n-----------------------Experiment 1----------------------------')
     predict_to_understand('zones_ftp_power_hr_agg', 'Lasso', Lasso())
+
+    print('\n-----------------------Experiment 2----------------------------')
+    feature_importance_experiment('zones_ftp_power_hr_agg', 'Lasso', Lasso())
 
 if __name__ == '__main__':
     evaluate()
