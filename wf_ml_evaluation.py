@@ -72,14 +72,25 @@ def predict_to_understand(filepath, model_name, ml_model):
 
 def variable_change_experiment(X_test, scaler, filepath, model_name, variableA, variableB=None):
     X_test_default = X_test.iloc[5:6]
-    init_variableA = X_test_default.at[X_test_default.index[0], variableA]
-    print('init variable A', init_variableA)
+
+    if variableA:
+        init_variableA = X_test_default.at[X_test_default.index[0], variableA]
+        print('init variable A', init_variableA)
+
+    if variableB:
+        init_variableB = X_test_default.at[X_test_default.index[0], variableB]
+        print('init variable B', init_variableB)
 
     for i in range(5):
         X_test_cur = X_test.iloc[5:6].copy()
-        new_value = init_variableA + (i+1) * 50
-        print('new variable A', new_value)
-        X_test_cur.at[X_test_cur.index[0], variableA] = new_value
+        if variableA:
+            new_value_A = init_variableA + (i+1) * 100
+            print('new variable A', new_value_A)
+            X_test_cur.at[X_test_cur.index[0], variableA] = new_value_A
+        if variableB:
+            new_value_B = init_variableB + (i+1) * 100
+            print('new variable B', new_value_B)
+            X_test_cur.at[X_test_cur.index[0], variableB] = new_value_B
         X_test_cur_scaled = scaler.transform(X_test_cur)
         y_pred_cur = wf_ml_prediction.predict(filepath + '_' + model_name, X_test_cur_scaled)
         print(f'Changed ', y_pred_cur)
@@ -102,8 +113,11 @@ def feature_importance_experiment(filepath, model_name, ml_model):
     print(f'predicted FTP: {y_pred[5]}')
     print(f'actual FTP: {y_test.iloc[5]}\n')
 
-    print('Change variable A: average_heartrate')
+    print('Change variable A: average_heartrate\n')
     variable_change_experiment(X_test, scaler, filepath, model_name, 'average_heartrate')
+
+    print('\nChange variable B: Power Zone 7\n')
+    variable_change_experiment(X_test, scaler, filepath, model_name, None, 'Power Zone 7')
 
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
