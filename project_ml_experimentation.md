@@ -72,14 +72,14 @@ actual FTP: 180.31079166666663
 
 ## Interesting Features
 ### Feature A
-**Feature:** TODO
+**Feature:** average_heartrate (cumulative)
 
-**Justification:** TODO
+**Justification:** The average_heartrate in this dataset gives a measure of how hard the athlete went during training as compared to power which tells what kind of output the athlete got. Sometimes during heavy training, even when the output starts dropping, as long as you keep pushing yourself, you can get the benefit of improvement as you are at the limit. So it would make sense that this variable is important to determine how high someone's ftp can get. If you can push more, you will get more improvement.
 
 ### Feature B
-**Feature:** TODO
+**Feature:** Power Zone 7 (cumulative)
 
-**Justification:** TODO
+**Justification:** Power Zone 7 with respect to this dataset refers to the cumulative amount of time spent in power zone 7 for the entire month in the range [250-300]. Since this is my data, I can tell that this falls in the Vo2 max range for me which is slightly above threshold (ftp). In order to push your ceiling you need to regularly go beyond what you usually can achieve. That is how you can find improvement. Hence I feel this feature can be important to determine the FTP.
 
 ## Experiments 
 ### Varying A
