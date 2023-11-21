@@ -35,7 +35,7 @@ predicted FTP: 100.85093211152602
 actual FTP: 111.34633333333332
 ```
 
-**Prediction Explanation:** TODO
+**Prediction Explanation:** The aggregate moving time for the month here is 4328 seconds which is only ~1.2 hours for the entire month. That means that I did not train as much in this month at all. The total kilojoules for the month was also only 441.8 which can be done in a single ride. Even the time spent in HR zones 3, 4, 5 is 0. Considering all these factors, it is expected to have a low performance as there was close to no training this month. Hence the lower predicted ftp of ~100.8 is justifiable. It is also close to the actual ftp.
 
 ### Record 2
 **Raw Data:** 
@@ -68,7 +68,7 @@ predicted FTP: 184.25025285603553
 actual FTP: 180.31079166666663
 ```
 
-**Prediction Explanation:** TODO
+**Prediction Explanation:** Here, the total moving time is 116537 which is ~32.37 hours for the month, which is a decent amount of training for a month, I have gone to 40-50 during heavy training months (for comparison). The amount of work done is also considerably higher, 17346.3 which is ~535.8 kj per hour on average for this month. There is a significant time spent in training in higher HR zones 3, 4, 5. So it is natural that the training will pay off and a higher ftp will be gained. It is evident from the fact that it predicted ~184 which is much higher than before and also is similar to the actual ftp.
 
 ## Interesting Features
 ### Feature A
