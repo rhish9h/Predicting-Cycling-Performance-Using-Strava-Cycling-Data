@@ -70,7 +70,7 @@ def predict_to_understand(filepath, model_name, ml_model):
     print(f'predicted FTP: {y_pred[5]}')
     print(f'actual FTP: {y_test.iloc[5]}\n')
 
-def variable_change_experiment(X_test, scaler, filepath, model_name, variableA, variableB=None):
+def variable_change_experiment(X_test, scaler, filepath, model_name, variableA, variableB=None, inverse=False):
     X_test_default = X_test.iloc[5:6]
 
     if variableA:
@@ -84,7 +84,10 @@ def variable_change_experiment(X_test, scaler, filepath, model_name, variableA, 
     for i in range(5):
         X_test_cur = X_test.iloc[5:6].copy()
         if variableA:
-            new_value_A = init_variableA + (i+1) * 100
+            if inverse:
+                new_value_A = init_variableA - (i+1) * 100
+            else:
+                new_value_A = init_variableA + (i+1) * 100
             print('new variable A', new_value_A)
             X_test_cur.at[X_test_cur.index[0], variableA] = new_value_A
         if variableB:
@@ -113,11 +116,17 @@ def feature_importance_experiment(filepath, model_name, ml_model):
     print(f'predicted FTP: {y_pred[5]}')
     print(f'actual FTP: {y_test.iloc[5]}\n')
 
-    print('Change variable A: average_heartrate\n')
+    print('Increase variable A: average_heartrate\n')
     variable_change_experiment(X_test, scaler, filepath, model_name, 'average_heartrate')
 
-    print('\nChange variable B: Power Zone 7\n')
+    print('\nIncrease variable B: Power Zone 7\n')
     variable_change_experiment(X_test, scaler, filepath, model_name, None, 'Power Zone 7')
+
+    print('\nIncrease both variable A and B: average_heartrate and Power Zone 7\n')
+    variable_change_experiment(X_test, scaler, filepath, model_name, 'average_heartrate', 'Power Zone 7')
+
+    print('\nDecrease variable A and increase B: average_heartrate and Power Zone 7\n')
+    variable_change_experiment(X_test, scaler, filepath, model_name, 'average_heartrate', 'Power Zone 7', inverse=True)
 
 def evaluate():
     summary_columns = ['Dataset', 'Method', 'MSE', 'R2']
