@@ -145,5 +145,24 @@ def visualize():
     plt.savefig('visuals/histogram_moving_time.png')
     plt.show()
 
+    print("------------------------------------- Trends in performance changes -----------------------------------")
+    print('Trends in performance changes')
+    print("-------------------------------------------------------------------------------------------------------")
+
+    # Plot the trend in performace change in terms of FTP per training block over time
+    zones_ftp_power_hr_agg = pd.read_csv('data_processed/zones_ftp_power_hr_agg.csv')
+    ftp_only = zones_ftp_power_hr_agg[['ftp']]
+    # Smooth the line using a rolling mean
+    ftp_only_smoothed = ftp_only['ftp'].rolling(window=3).mean()
+
+    plt.plot(ftp_only_smoothed, linestyle='--', color='#F9968B', label='Smoothed FTP Trend')
+    plt.plot(ftp_only['ftp'], marker='o', linestyle='-', color='#2CCED2', label='FTP Trend')
+    plt.title('FTP Over Different Months')
+    plt.xlabel('Month')
+    plt.ylabel('FTP')
+    plt.legend()
+    plt.savefig('visuals/trend_ftp_over_months.png')
+    plt.show()
+
 if __name__ == '__main__':
     visualize()
