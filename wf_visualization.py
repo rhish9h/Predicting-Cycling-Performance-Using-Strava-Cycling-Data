@@ -164,5 +164,29 @@ def visualize():
     plt.savefig('visuals/trend_ftp_over_months.png')
     plt.show()
 
+    print("------------------------------------- Trends in time spent in zones -----------------------------------")
+    print('Trends in time spent in zones')
+    print("-------------------------------------------------------------------------------------------------------")
+
+    hr_zones_pre_convert = zones_ftp_power_hr_agg[['HR Zone 1','HR Zone 2','HR Zone 3','HR Zone 4','HR Zone 5']]
+    hr_zones_only = pd.DataFrame()
+    hr_zones_only['HR Zone 1'] = hr_zones_pre_convert['HR Zone 1'] / 3600
+    hr_zones_only['HR Zone 2'] = hr_zones_pre_convert['HR Zone 2'] / 3600
+    hr_zones_only['HR Zone 3'] = hr_zones_pre_convert['HR Zone 3'] / 3600
+    hr_zones_only['HR Zone 4'] = hr_zones_pre_convert['HR Zone 4'] / 3600
+    hr_zones_only['HR Zone 5'] = hr_zones_pre_convert['HR Zone 5'] / 3600
+    plt.plot(hr_zones_only['HR Zone 1'], linestyle='-', color='#fedcda', label='HR Zone 1')
+    plt.plot(hr_zones_only['HR Zone 2'], linestyle='-', color='#ff7f78', label='HR Zone 2')
+    plt.plot(hr_zones_only['HR Zone 3'], linestyle='-', color='#ff2216', label='HR Zone 3')
+    plt.plot(hr_zones_only['HR Zone 4'], linestyle='-', color='#b30900', label='HR Zone 4')
+    plt.plot(hr_zones_only['HR Zone 5'], linestyle='-', color='#510400', label='HR Zone 5')
+    plt.title('Time Spent in Heart Rate Zones Over Different Months')
+    plt.xlabel('Month')
+    plt.ylabel('Time Spent in HR Zones (in hours)')
+    plt.legend()
+    plt.savefig('visuals/trend_time_spent_in_hr_zones.png')
+    plt.show()
+
+
 if __name__ == '__main__':
     visualize()
